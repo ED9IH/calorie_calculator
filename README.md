@@ -44,3 +44,5 @@
 Посмотреть сумму калорий задень, отправьте GET запрос http://localhost:8079/meal/sumCalories/{id}/{dd-MM-yyyy} не забудьте указать актульное число. И id пользователя. Приложение задает автоматически текущию дату.
 Проверка уложились ли вы в дневную норму каллорий отправьте GET запрос http://localhost:8079/meal/checkCalories/{id}/{dd-MM-yyyy} не забудьте указать актульное число. И id пользователя. Приложение задает автоматически текущию дату.
 Посмотреть список блюд определенный день отправьте GET запрос http://localhost:8079/meal/getAllMealByDay/{dd-MM-yyyy}
+Файл для Postman
+[calorie_calculator.postman_collection.json](https://github.com/user-attachments/files/19453111/calorie_calculator.postman_collection.json)
