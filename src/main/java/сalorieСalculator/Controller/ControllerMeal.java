@@ -50,8 +50,8 @@ public class ControllerMeal {
     /**
      * История приемов пиши за день
      */
-    @GetMapping("/getAllMealByDay/{date}")
-    public ResponseEntity<AllMealByDayDTO>getAllMealByDay(@PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date) {
-        return ResponseEntity.ok(serviceMeal.getAllMealByDay(date));
+    @GetMapping("/getAllMealByDay/{userId}/{date}")
+    public ResponseEntity<AllMealByDayDTO>getAllMealByDay(@PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date,@PathVariable long userId) {
+        return ResponseEntity.ok(serviceMeal.getAllMealByDay(userId,date));
     }
 }

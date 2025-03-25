@@ -58,7 +58,7 @@ public class ServiceMeal {
         List<Meal> meals = mealRepository.findAll();
         return meals.stream().filter(m -> m.getUser().getId().equals(user.getId())
                         && m.getLocalDate().isEqual(localDate)).flatMap(m -> m.getDishes().stream()).
-                mapToInt(Dish::getNumberOfCalories).reduce(Integer::sum).orElseThrow();
+                mapToInt(Dish::getNumberOfCalories).reduce(Integer::sum).orElseThrow(() -> new RuntimeException("Not found user"));
     }
 
     /**
@@ -86,12 +86,13 @@ public class ServiceMeal {
     /**
      * История приемов пиши за день
      */
-    public AllMealByDayDTO getAllMealByDay(LocalDate localDate) {
+    public AllMealByDayDTO getAllMealByDay(long id,LocalDate localDate) {
         List<Meal> meals = mealRepository.findAll();
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found user"));
         List<DishDTO> dishDTOS = meals.stream()
-                .filter(m -> m.getLocalDate().isEqual(localDate))
+                .filter(m -> m.getLocalDate().isEqual(localDate)&&m.getUser().getId().equals(user.getId()))
                 .flatMap(m -> m.getDishes().stream())
-                .map(DishDTO::new) // Используем конструктор DishDTO(Dish dish)
+                .map(DishDTO::new)
                 .toList();
         return new AllMealByDayDTO(localDate, dishDTOS);
     }
