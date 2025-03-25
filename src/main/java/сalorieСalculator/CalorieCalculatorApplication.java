@@ -1,7 +1,8 @@
-package alorie_.alculator;
+package сalorieСalculator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 
 @SpringBootApplication
 public class CalorieCalculatorApplication {
